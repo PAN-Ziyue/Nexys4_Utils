@@ -1,0 +1,9 @@
+/.Xil
+/Framework.cache
+/Framework.hw
+/Framework.runs
+/Framework..sim
+*.log
+*.xpr
+*.jou
+*.str
