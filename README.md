@@ -7,4 +7,4 @@
 ## Modules
 
 * [X] 7-Segment & LED
-* [X] 100mhz clock signal division
+* [X] 100mhz clock frequency divider
