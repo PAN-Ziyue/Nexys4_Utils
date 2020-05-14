@@ -30,7 +30,7 @@ module Framework(
     .point(point_out), .scan(div[20:18]), .seg(SEGMENT), .an(AN));
 
     Enter M4(.BTNL(BTNL), .BTNR(BTNR), .BTNU(BTNU), .BTND(BTND),
-    .clk(clk_100mhz), .ctrl({SW[7:5], SW[0]}), .Ai(Ai), .Bi(Bi),
+    .clk(div[22]), .ctrl({SW[7:5], SW[0]}), .Ai(Ai), .Bi(Bi),
     .blink(blink));
 
 
@@ -38,7 +38,7 @@ module Framework(
                 .Test(SW[7:5]), .point_in({div[31:0], div[31:0]}),
                 .LES(les), .Data0(Ai), .data1(Bi), .data2(div),
                 .data3(), .data4(), .data5(), 
-                .data6(), .data7(), .point_out(point_out),
+                .data6(), .data7(), .point_out(~point_out),
                 .LE_out(LE_out), .Disp_num(data_out));
 
 
