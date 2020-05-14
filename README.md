@@ -14,5 +14,5 @@
 
 * [X] 7-Segment & LED
 * [X] 100mhz clock frequency divider
-* [X] Enter_32
+* [X] Enter_32 (With built-in Anti-jitter)
 * [X] MultiCh_32 (Without Modification)

@@ -30,7 +30,7 @@ module Framework(
     .point(point_out), .scan(div[20:18]), .seg(SEGMENT), .an(AN));
 
     Enter M4(.BTNL(BTNL), .BTNR(BTNR), .BTNU(BTNU), .BTND(BTND),
-    .clk(div[22]), .ctrl({SW[7:5], SW[0]}), .Ai(Ai), .Bi(Bi),
+    .clk(clk_100mhz), .ctrl({SW[7:5], SW[0]}), .Ai(Ai), .Bi(Bi),
     .blink(blink));
 
 

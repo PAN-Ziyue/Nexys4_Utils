@@ -6,6 +6,8 @@ module Enter(
     output reg [31:0] Bi = 32'h12345678,
     output reg [7:0] blink
 );
+
+    reg[24:0] counter = 24'h000_0000;
     reg [2:0] blink_bit = 3'b000;
     always @(*) begin
         if(ctrl[0])
@@ -24,12 +26,21 @@ module Enter(
     end
 
     always @(posedge clk) begin
-        if(ctrl[0]) begin
-            if(BTNL)
+        if(counter != 24'h000_0000)
+            counter <= counter + 1;
+        else if(ctrl[0] && counter==24'h000_0000) begin
+            if(BTNL) begin
                 blink_bit <= blink_bit + 1;
-            else if(BTNR)
+                counter <= 1;
+            end
+                
+            else if(BTNR) begin
                 blink_bit <= blink_bit - 1;
+                counter <= 1;
+            end
+                
             else if(BTNU) begin
+                counter <= 1;
                 case (blink_bit)
                     3'b000:begin
                         if (ctrl[3:1]==3'b000) Ai[3:0] <= Ai[3:0] + 1;
@@ -65,6 +76,7 @@ module Enter(
                     end
                 endcase
             end else if(BTND) begin
+                counter <= 1;
                 case (blink_bit)
                     3'b000:begin
                         if (ctrl[3:1]==3'b000) Ai[3:0] <= Ai[3:0] - 1;
@@ -100,9 +112,7 @@ module Enter(
                     end
                 endcase
             end 
-            
         end
     end
-
 
 endmodule // Enter
