@@ -17,6 +17,7 @@
 * [X] Enter_32
 * [X] MultiCh_32 (Without Modification)
 * [X] Anti_jitter
+* [X] PIO
 
 
 ## Variables
