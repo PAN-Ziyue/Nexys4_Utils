@@ -9,6 +9,9 @@ module Framework(
     output [15:0] LED,
     output [7:0] SEGMENT, AN
 );
+
+    wire [15:0] SW_OK;
+    wire [4:0] BTN_OK;
     wire rst = ~RSTN;
     wire[31:0] div;
     wire clk_cpu;
@@ -22,17 +25,17 @@ module Framework(
     wire [31:0] data_out, Ai, Bi;
     wire [63:0] les = ~{{48{N0}}, blink, blink};
 
-
     clk_div U8(.clk(clk_100mhz), .rst(rst), 
     .SW2(SW[2]), .Clk_CPU(clk_cpu), .clkdiv(div));
 
     Segment U6(.flash(div[25]), .data(data_out), .le(LE_out), 
     .point(point_out), .scan(div[20:18]), .seg(SEGMENT), .an(AN));
 
-    Enter M4(.BTNL(BTNL), .BTNR(BTNR), .BTNU(BTNU), .BTND(BTND),
-    .clk(clk_100mhz), .ctrl({SW[7:5], SW[0]}), .Ai(Ai), .Bi(Bi),
-    .blink(blink));
+    Anti_jitter M2(.clk(clk_100mhz), .SW(SW), .SW_OK(SW_OK),
+    .BTN({BTNL, BTNU, BTNR, BTND, BTNC}), .BTN_OK(BTN_OK));
 
+    Enter M4(.BTN_OK(BTN_OK), .clk(clk_100mhz), 
+    .ctrl({SW[7:5], SW[0]}), .Ai(Ai), .Bi(Bi), .blink(blink));
 
     Multi_8CH32 U5( .clk(clk_100mhz), .rst(rst), .EN(V5), 
                 .Test(SW[7:5]), .point_in({div[31:0], div[31:0]}),

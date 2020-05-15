@@ -1,5 +1,5 @@
 module Enter(
-    input BTNL, BTNR, BTNU, BTND,
+    input [4:0] BTN_OK,
     input clk,
     input [3:0] ctrl,
     output reg [31:0] Ai = 32'h87654321, 
@@ -7,8 +7,7 @@ module Enter(
     output reg [7:0] blink
 );
 
-    reg[24:0] counter = 24'h000_0000;
-    reg [2:0] blink_bit = 3'b000;
+    reg [2:0] blink_bit = 3'b111;
     always @(*) begin
         if(ctrl[0])
             case (blink_bit)
@@ -26,21 +25,14 @@ module Enter(
     end
 
     always @(posedge clk) begin
-        if(counter != 24'h000_0000)
-            counter <= counter + 1;
-        else if(ctrl[0] && counter==24'h000_0000) begin
-            if(BTNL) begin
+        if(ctrl[0]) begin
+            if(BTN_OK[4])
                 blink_bit <= blink_bit + 1;
-                counter <= 1;
-            end
-                
-            else if(BTNR) begin
+             
+            else if(BTN_OK[2])
                 blink_bit <= blink_bit - 1;
-                counter <= 1;
-            end
                 
-            else if(BTNU) begin
-                counter <= 1;
+            else if(BTN_OK[3]) begin
                 case (blink_bit)
                     3'b000:begin
                         if (ctrl[3:1]==3'b000) Ai[3:0] <= Ai[3:0] + 1;
@@ -75,8 +67,7 @@ module Enter(
                         else if(ctrl[3:1]==3'b001) Bi[31:28] <= Bi[31:28] + 1;
                     end
                 endcase
-            end else if(BTND) begin
-                counter <= 1;
+            end else if(BTN_OK[1]) begin
                 case (blink_bit)
                     3'b000:begin
                         if (ctrl[3:1]==3'b000) Ai[3:0] <= Ai[3:0] - 1;
