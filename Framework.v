@@ -28,14 +28,14 @@ module Framework(
     clk_div U8(.clk(clk_100mhz), .rst(rst), 
     .SW2(SW[2]), .Clk_CPU(clk_cpu), .clkdiv(div));
 
-    Segment U6(.flash(div[25]), .data(data_out), .le(LE_out), 
+    Segment U6(.flash(div[25]), .data(data_out), .le(LE_out), .SW0(SW_OK[0]), 
     .point(point_out), .scan(div[20:18]), .seg(SEGMENT), .an(AN));
 
     Anti_jitter M2(.clk(clk_100mhz), .SW(SW), .SW_OK(SW_OK),
     .BTN({BTNL, BTNU, BTNR, BTND, BTNC}), .BTN_OK(BTN_OK));
 
     Enter M4(.BTN_OK(BTN_OK), .clk(clk_100mhz), 
-    .ctrl({SW[7:5], SW[0]}), .Ai(Ai), .Bi(Bi), .blink(blink));
+    .ctrl({SW[7:5], SW[15]}), .Ai(Ai), .Bi(Bi), .blink(blink));
 
     Multi_8CH32 U5( .clk(clk_100mhz), .rst(rst), .EN(V5), 
                 .Test(SW[7:5]), .point_in({div[31:0], div[31:0]}),

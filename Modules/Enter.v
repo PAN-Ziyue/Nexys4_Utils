@@ -2,8 +2,8 @@ module Enter(
     input [4:0] BTN_OK,
     input clk,
     input [3:0] ctrl,
-    output reg [31:0] Ai = 32'h87654321, 
-    output reg [31:0] Bi = 32'h12345678,
+    output reg [31:0] Ai = 32'h557EF7E0, 
+    output reg [31:0] Bi = 32'hD7BDFBD9,
     output reg [7:0] blink
 );
 
