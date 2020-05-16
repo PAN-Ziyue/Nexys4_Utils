@@ -1,7 +1,7 @@
 # Nexys4_Utils
 
 
-**Still Under Developing...**
+**Making Progress...**
 
 ---
 **Requirement**:
@@ -12,9 +12,9 @@
 
 ## Modules
 
-* [X] 7-Segment & LED
+* [X] 7-Segment (With built-in graph display)
 * [X] 100mhz clock frequency divider
-* [X] Enter_32
+* [X] Enter
 * [X] MultiCh_32 (Without Modification)
 * [X] Anti_jitter
 * [X] PIO

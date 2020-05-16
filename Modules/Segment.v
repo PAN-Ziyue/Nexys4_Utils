@@ -4,7 +4,6 @@ module Segment(input flash, SW0,
                input [2:0] scan,
                output reg [7:0] seg, an);
 
-
     wire [6:0] segments[15:0];
     assign segments[0]  = 7'b100_0000;
     assign segments[1]  = 7'b111_1001;
