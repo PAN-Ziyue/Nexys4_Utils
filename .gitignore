@@ -2,7 +2,8 @@
 /Framework.cache
 /Framework.hw
 /Framework.runs
-/Framework..sim
+/Framework.sim
+/Framework.ip_user_files
 *.log
 *.xpr
 *.jou
