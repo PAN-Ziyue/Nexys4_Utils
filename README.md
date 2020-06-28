@@ -18,6 +18,7 @@
 * [X] MultiCh_32 (Without Modification)
 * [X] Anti_jitter
 * [X] PIO
+* [X] PS2 Keyboard
 
 
 ## Variables

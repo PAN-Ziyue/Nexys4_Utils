@@ -4,6 +4,7 @@
 //*    Top Module: Framework
 module Framework(
     input RSTN, clk_100mhz,
+    input PS2_DATA, PS2_CLK,
     input BTNL, BTNR, BTNU, BTND, BTNC,
     input [15:0] SW,
     output [15:0] LED,
@@ -12,6 +13,7 @@ module Framework(
 
     wire [15:0] SW_OK;
     wire [4:0] BTN_OK;
+    wire [9:0] PS2_data;
     wire rst = ~RSTN;
     wire[31:0] div;
     wire clk_cpu;
@@ -40,9 +42,14 @@ module Framework(
     Multi_8CH32 U5( .clk(clk_100mhz), .rst(rst), .EN(V5), 
                 .Test(SW[7:5]), .point_in({div[31:0], div[31:0]}),
                 .LES(les), .Data0(Ai), .data1(Bi), .data2(div),
-                .data3(), .data4(), .data5(), 
+                .data3({23'b0, PS2_data}), .data4(), .data5(), 
                 .data6(), .data7(), .point_out(~point_out),
                 .LE_out(LE_out), .Disp_num(data_out));
+                
+                
+    PS2 keyboard(.clk(clk_100mhz), .rst(rst),
+                .PS2_CLK(PS2_CLK), .PS2_DATA(PS2_DATA),
+                .PS2_out(PS2_data));
 
 
 endmodule // Framework
